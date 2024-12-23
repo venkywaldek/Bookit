@@ -4,7 +4,7 @@ import { createAdminClient } from '@/config/appwrite';
 
 import { ID } from 'node-appwrite';
 
-async function createUser(previousState) {
+async function createUser(previousState, formData) {
   const name = formData.get('name');
   const email = formData.get('email');
   const password = formData.get('password');
