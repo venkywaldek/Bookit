@@ -7,10 +7,29 @@ import BookingForm from '@/components/BookingForm';
 
 const RoomPage = async ({ params }) => {
   const { id } = params;
-  const room =  await getSingleRoom(id)
 
+  if (!id) {
+    //Handle cases where the room is null
+    return (
+      <div className='p-6 bg-white rounded-lg shadow'>
+        <Heading title='Error' />;<p>Room ID is missing or invalid.</p>
+      </div>
+    );
+  }
+
+  //Fetch the room data
+  const room = await getSingleRoom(id);
   if (!room) {
-    return <Heading title='Room Not Found' />;
+    return (
+      <div className='p-6  bg-white rounded-lg shadow'>
+        <Heading title='Room not found' />
+        <p>The room you are looking for does not exist.</p>
+        <Link href='/' className='text-blue-500 hover:underline'>
+          {' '}
+          Go back to the homepage{' '}
+        </Link>
+      </div>
+    );
   }
   return (
     <>
@@ -27,8 +46,10 @@ const RoomPage = async ({ params }) => {
 
         <div className='flex flex-col sm:flex-row sm:space-x-6'>
           <Image
-            src={`/images/rooms/${room.image}`}
-            alt={room.name}
+            src={
+              room.image ? `/images/rooms/${room.image}` : '/default-room.jpg'
+            }
+            alt={room.name || 'Default Room'}
             width={400}
             height={100}
             className='w-full sm:w-1/3 h-64 object-cover rounded-lg'

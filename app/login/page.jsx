@@ -4,27 +4,22 @@ import { useEffect, useActionState, useState } from 'react';
 import { toast } from 'react-toastify';
 import createSession from '../actions/createSession';
 import { useRouter } from 'next/navigation';
-
+import { useAuth } from '@/context/authContext';
 const LoginPage = () => {
   const [state, action] = useActionState(createSession);
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
   const router = useRouter();
-  //State to track the login status
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
     if (state?.error) {
       toast.error(state.error);
-    } else if (state?.success) {
-      toast.success('Logged in successfully');
-      //Only use router.push when the component is fully mounted
-      setIsLoggedIn(true);
     }
-  }, [state]);
-
-  useEffect(() => {
-    if (isLoggedIn) {
+    if (state?.success) {
+      toast.success('Logged in successfully');
+      setIsAuthenticated(true);
       router.push('/');
     }
-  }, [isLoggedIn, router]);
+  }, [state]);
 
   return (
     <div className='flex items-center justify-center'>
