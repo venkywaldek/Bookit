@@ -9,7 +9,7 @@ const RegisterPage = () => {
           </h2>
 
           <div className='mb-4'>
-            <label htmlFor='' className='block text-gray-700 font-bold mb-2'>
+            <label htmlFor='name' className='block text-gray-700 font-bold mb-2'>
               Name
             </label>
             <input
@@ -35,7 +35,7 @@ const RegisterPage = () => {
           </div>
 
           <div className='mb-4'>
-            <label htmlFor='' className='block text-gray-700 font-bold mb-2'>
+            <label htmlFor='password' className='block text-gray-700 font-bold mb-2'>
               Password
             </label>
             <input
@@ -48,7 +48,7 @@ const RegisterPage = () => {
           </div>
 
           <div className='mb-4'>
-            <label htmlFor='' className='block text-gray-700 font-bold mb-2'>
+            <label htmlFor='confirm-password' className='block text-gray-700 font-bold mb-2'>
              Confirm Password
             </label>
             <input
