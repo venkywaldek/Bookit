@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       setCurrentUser(user);
     };
     checkAuthentication();
-  });
+  }, []);
   return (
     <AuthContext.Provider
       value={{

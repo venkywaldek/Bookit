@@ -1,13 +1,13 @@
 'use client';
 import Link from 'next/link';
-import { useEffect, useActionState, useState } from 'react';
+import { useEffect, useActionState } from 'react';
 import { toast } from 'react-toastify';
 import createSession from '../actions/createSession';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/authContext';
 const LoginPage = () => {
-  const [state, action] = useActionState(createSession);
-  const { isAuthenticated, setIsAuthenticated } = useAuth();
+  const [state, formAction] = useActionState(createSession, {});
+  const { IsAuthenticated, setIsAuthenticated } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const LoginPage = () => {
   return (
     <div className='flex items-center justify-center'>
       <div className='bg-white shadow-lg rounded-lg p-6 w-full max-w-sm mt-20'>
-        <form action={action}>
+        <form action={formAction}>
           <h2 className='text-2xl font-bold text-center text-gray-800 mb-6'>
             Login
           </h2>
@@ -42,6 +42,7 @@ const LoginPage = () => {
               name='email'
               className='border rounded w-full py-2 px-3'
               autoComplete='email'
+              required
             />
           </div>
 

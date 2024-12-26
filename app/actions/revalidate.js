@@ -8,8 +8,9 @@ export async function revalidate(path) {
 
     revalidatePath(path);
     console.log(`Revalidated path: ${path}`);
+    return { success: true, message: `Revalidated path: ${path} ` };
   } catch (error) {
     console.error('Failed to revalidate path:', error);
-    throw error;
+    res.status(500).json({ error: 'Failed to revalidate path.' });
   }
 }

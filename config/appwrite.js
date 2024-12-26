@@ -26,7 +26,7 @@ const createSessionClient = async (session) => {
     .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT);
 
   if (session) {
-    Client.setSession(session);
+    client.setSession(session);
   }
 
   return {

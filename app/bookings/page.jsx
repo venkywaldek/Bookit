@@ -1,4 +1,4 @@
-const Bookings = () => {
+const BookingsPage = () => {
   return (
     <div>
       <h1>Bookings</h1>
@@ -6,4 +6,4 @@ const Bookings = () => {
   );
 };
 
-export default Bookings;
+export default BookingsPage;

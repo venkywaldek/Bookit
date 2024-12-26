@@ -7,6 +7,7 @@ import { FaUser, FaSignInAlt, FaSignOutAlt, FaBuilding } from 'react-icons/fa';
 import destroySession from '@/app/actions/destroySession';
 import { toast } from 'react-toastify';
 import { useAuth } from '@/context/authContext';
+
 const Header = () => {
   const router = useRouter();
   const { isAuthenticated, setIsAuthenticated } = useAuth();

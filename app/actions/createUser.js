@@ -1,7 +1,6 @@
 'use server';
 
 import { createAdminClient } from '@/config/appwrite';
-
 import { ID } from 'node-appwrite';
 
 async function createUser(previousState, formData) {
@@ -22,7 +21,7 @@ async function createUser(previousState, formData) {
     };
   }
 
-  if (!password === !confirmPassword) {
+  if (password === !confirmPassword) {
     return {
       error: 'Passwords do not match',
     };

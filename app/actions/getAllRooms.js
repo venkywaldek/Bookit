@@ -1,12 +1,13 @@
 'use server';
 
 import { createAdminClient } from '@/config/appwrite';
-// import { revalidatePath } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 async function getAllRooms() {
   try {
     const { databases } = await createAdminClient();
+
     //Fetch rooms
     const { documents: rooms } = await databases.listDocuments(
       process.env.NEXT_PUBLIC_APPWRITE_DATABASE,
@@ -20,6 +21,16 @@ async function getAllRooms() {
   } catch (error) {
     console.log('Failed to get rooms', error);
     redirect('/error');
+  }
+}
+
+export async function revalidateRooms() {
+  try {
+    revalidatePath('/');
+    console.log('Revalidated path: /');
+  } catch (error) {
+    console.error('Failed to revalidate path:', error);
+    throw error;
   }
 }
 
