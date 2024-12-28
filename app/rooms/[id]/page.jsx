@@ -6,7 +6,7 @@ import { FaChevronLeft } from 'react-icons/fa';
 import BookingForm from '@/components/BookingForm';
 
 const RoomPage = async ({ params }) => {
-  const { id } = params;
+  const { id } = await params;
 
   if (!id) {
     //Handle cases where the room is null
@@ -41,7 +41,7 @@ const RoomPage = async ({ params }) => {
           className='flex items-center text-gray-600 hover:text-gray-800 mb-4'
         >
           <FaChevronLeft className='inline mr-1' />
-          <span>Back to Rooms</span>
+          <span className='ml-2'>Back to Rooms</span>
         </Link>
 
         <div className='flex flex-col sm:flex-row sm:space-x-6'>

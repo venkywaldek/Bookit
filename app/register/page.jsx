@@ -6,8 +6,10 @@ import Link from 'next/link';
 import createUser from '../actions/createUser';
 
 const RegisterPage = () => {
-  const [state, formAction] = useActionState(createUser);
+  const [state, formAction] = useActionState(createUser, {});
+  
   const router = useRouter();
+
   useEffect(() => {
     if (!state) return;
     if (state.error) {

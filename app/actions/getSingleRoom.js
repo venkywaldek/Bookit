@@ -8,7 +8,6 @@ async function getSingleRoom(id) {
   //Ensure the ID is provided
   if (!id) {
     console.error('Error:Room ID is missing.');
-
     return null;
   }
   try {
@@ -26,7 +25,7 @@ async function getSingleRoom(id) {
     return room;
   } catch (error) {
     console.log('Failed to get room', error.message || error);
-    
+
     return null;
   }
 }

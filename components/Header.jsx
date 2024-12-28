@@ -16,7 +16,7 @@ const Header = () => {
     const { success, error } = await destroySession();
 
     if (success) {
-      setIsAuthenticated(false)
+      setIsAuthenticated(false);
       router.push('/login');
     } else {
       toast.error(error);

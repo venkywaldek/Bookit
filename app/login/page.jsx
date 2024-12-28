@@ -6,25 +6,37 @@ import createSession from '../actions/createSession';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/authContext';
 const LoginPage = () => {
-  const [state, formAction] = useActionState(createSession, {});
+  const [state, formAction] = useActionState(createSession);
   const { IsAuthenticated, setIsAuthenticated } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     if (state?.error) {
       toast.error(state.error);
+      console.error('Login Error:', state.error);
     }
     if (state?.success) {
       toast.success('Logged in successfully');
       setIsAuthenticated(true);
-      router.push('/');
+
+      //Navigate to the homepage after successful login
+      setTimeout(() => {
+        console.log('Navigating to home...');
+        router.push('/');
+      }, 100); //Slight delay for state update propgation
     }
-  }, [state]);
+  }, [state, setIsAuthenticated, router]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    formAction(formData); //call the action with the form data
+  };
 
   return (
     <div className='flex items-center justify-center'>
       <div className='bg-white shadow-lg rounded-lg p-6 w-full max-w-sm mt-20'>
-        <form action={formAction}>
+        <form onSubmit={handleSubmit}>
           <h2 className='text-2xl font-bold text-center text-gray-800 mb-6'>
             Login
           </h2>
