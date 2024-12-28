@@ -28,9 +28,11 @@ async function createSession(previousState, formData) {
 
     //Create cookie
     const isDev = process.env.NODE_ENV === 'development';
-    const cookieStore = await cookies();
+    const cookieStore =  cookies();
 
     console.log('Creating cookie with the following settings:', {
+      name: 'appwrite-session',
+      value: session.secret,
       httpOnly: true,
       secure: !isDev,
       sameSite: 'lax',
@@ -40,7 +42,7 @@ async function createSession(previousState, formData) {
 
     cookieStore.set('appwrite-session', session.secret, {
       httpOnly: true,
-      secure: true,
+      secure: !isDev,
       sameSite: 'lax',
       expires: expireDate,
       path: '/',

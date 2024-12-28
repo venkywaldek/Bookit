@@ -26,7 +26,7 @@ async function getAllRooms() {
 
 export async function revalidateRooms() {
   try {
-    revalidatePath('/');
+    revalidatePath('/', 'layout');
     console.log('Revalidated path: /');
   } catch (error) {
     console.error('Failed to revalidate path:', error);

@@ -13,12 +13,15 @@ const Header = () => {
   const { isAuthenticated, setIsAuthenticated } = useAuth();
 
   const handleLogout = async () => {
+    console.log('Attempting to log out..');
     const { success, error } = await destroySession();
 
     if (success) {
+      console.log('Logged out successfully');
       setIsAuthenticated(false);
       router.push('/login');
     } else {
+      console.error('Logout error:', error);
       toast.error(error);
     }
   };
