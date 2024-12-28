@@ -16,6 +16,7 @@ const AddRoomPage = () => {
       router.push('/');
     }
   }, [state]);
+
   return (
     <>
       <Heading title='Add a Room' />
@@ -31,6 +32,7 @@ const AddRoomPage = () => {
             <input
               type='text'
               id='name'
+              name='name'
               className='border rounded w-full py-2 px-3'
               placeholder='Enter a name(Large Conference Room)'
               required
