@@ -1,9 +1,9 @@
 import Link from 'next/link';
+import CancelBookingButton from './CancelBookingButton';
 const BookedRoomCard = ({ booking }) => {
   const { room_id: room } = booking;
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-
     //Get month
     const options = { month: 'short' };
     const month = date.toLocaleString('en-US', options, { timeZone: 'UTC' });
@@ -45,12 +45,7 @@ const BookedRoomCard = ({ booking }) => {
           {' '}
           View Room
         </Link>
-        <button
-          href='#'
-          className='bg-red-500 text-white px-4 py-2 rounded w-full sm:w-auto text-center hover:bg-red-700'
-        >
-          Cancel Booking
-        </button>
+        <CancelBookingButton bookingId={booking.$id} />
       </div>
     </div>
   );
