@@ -34,11 +34,11 @@ async function cancelBooking(bookingId) {
     //Check if booking belongs to current user
     if (booking.user_id !== user.id) {
       return {
-        error: ' You are not authorized to cancel this booking',
+        error: 'You are not authorized to cancel this booking',
       };
     }
 
-    //delete booking
+    //Delete booking
     await databases.deleteDocument(
       process.env.NEXT_PUBLIC_APPWRITE_DATABASE,
       process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_BOOKINGS,

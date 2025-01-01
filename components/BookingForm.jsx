@@ -7,7 +7,7 @@ import { useAuth } from '@/context/authContext';
 const BookingForm = ({ room }) => {
   const [state, formAction] = useActionState(bookRoom, {});
   const router = useRouter();
-
+ 
   useEffect(() => {
     if (state.error) toast.error(state.error);
     if (state.success) {

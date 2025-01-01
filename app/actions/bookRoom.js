@@ -49,7 +49,7 @@ async function bookRoom(previousState, formData) {
     const isAvailable = await checkRoomAvailability(
       roomId,
       checkInDateTime,
-      checkOutDateTime,
+      checkOutDateTime
     );
 
     if (!isAvailable) {
@@ -80,7 +80,7 @@ async function bookRoom(previousState, formData) {
       success: true,
     };
   } catch (error) {
-    console.log('Failed to book room', error);
+    console.log('Failed to book a room', error.message, error.stack);
     return {
       error: 'Something went wrong booking the room ',
     };
