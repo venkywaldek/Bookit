@@ -36,9 +36,9 @@ async function getAllRooms() {
 
     return response.documents;
     // //Revalidate the cache for this path
-    // revalidatePath('/', 'layout');
+    revalidatePath('/', 'layout');
 
-    return rooms;
+    // return rooms;
   } catch (error) {
     console.log('Failed to get rooms', error);
     //If it's server-side error, redirect to the error page
