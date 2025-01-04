@@ -2,6 +2,7 @@ import Link from 'next/link';
 import CancelBookingButton from './CancelBookingButton';
 const BookedRoomCard = ({ booking }) => {
   const { room_id: room } = booking;
+  
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     //Get month

@@ -30,33 +30,32 @@ async function checkRoomAvailability(roomId, checkIn, checkOut) {
     const checkInDateTime = toUTCDateTime(checkIn);
     const checkOutDateTime = toUTCDateTime(checkOut);
 
-    const { document: bookings } = await databases.listDocuments(
+    const response = await databases.listDocuments(
       process.env.NEXT_PUBLIC_APPWRITE_DATABASE,
       process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_BOOKINGS,
       [Query.equal('room_id', roomId)]
     );
 
+    const bookings = response.documents|| []
     //Loop over bookings and check for overlaps
-    if (Array.isArray(bookings)) {
-      for (const booking of bookings) {
-        const bookingCheckInDateTime = toUTCDateTime(booking.check_in);
-        const bookingCheckOutDateTime = toUTCDateTime(booking.check_out);
 
-        if (
-          dateRangesOverlap(
-            checkInDateTime,
-            checkOutDateTime,
-            bookingCheckInDateTime,
-            bookingCheckOutDateTime
-          )
-        ) {
-          return false;
-        }
+    for (const booking of bookings) {
+      const bookingCheckInDateTime = toUTCDateTime(booking.check_in);
+      const bookingCheckOutDateTime = toUTCDateTime(booking.check_out);
+
+      if (
+        dateRangesOverlap(
+          checkInDateTime,
+          checkOutDateTime,
+          bookingCheckInDateTime,
+          bookingCheckOutDateTime
+        )
+      ) {
+        return false;
       }
-    } else {
-      console.error('Booking is not an array:', bookings);
     }
 
+    //No Overlap found continue to book
     return true;
   } catch (error) {
     console.log('Failed to check availability', error);

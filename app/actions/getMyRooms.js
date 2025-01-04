@@ -16,7 +16,7 @@ async function getMyRooms() {
       sessionCookie.value
     );
 
-    //get user's ID
+    //Get user's ID
     const user = await account.get();
     const userId = user.$id;
 
