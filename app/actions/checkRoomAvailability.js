@@ -54,6 +54,11 @@ async function checkRoomAvailability(roomId, checkIn, checkOut) {
         return false;
       }
     }
+   
+    // Key Changes:
+    // Extract Documents Safely: Use response.documents || [] to ensure an iterable result even if documents is missing or undefined.
+    // Console Error Logs: Updated to use error.message and error.stack for better debugging.
+    // Functionality: The bookRoom and checkRoomAvailability functions now handle cases where the bookings field isn't iterable due to API response issues.
 
     //No Overlap found continue to book
     return true;
